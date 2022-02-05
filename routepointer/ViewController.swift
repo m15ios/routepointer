@@ -19,7 +19,7 @@ class ViewController: UIViewController {
     }()
 
     
-    var addAdressBtn: UIButton = UIButton()
+    var addAddressBtn: UIButton = UIButton()
     var routeBtn: UIButton = UIButton()
     var resetBtn: UIButton = UIButton()
 
@@ -54,18 +54,20 @@ extension ViewController {
     /**/
     
     func setButtons(){
-        addAdressBtn = makeButton("add adress")
-        addAdressBtn.addTarget(self, action: #selector(addAdressBtnTapped), for: .touchUpInside)
-        view.addSubview(addAdressBtn)
-        setBtnConstraints(addAdressBtn, coord: ["t":50,"r":-10,"h":40,"w":170])
+        addAddressBtn = makeButton("add adress")
+        addAddressBtn.addTarget(self, action: #selector(addAdressBtnTapped), for: .touchUpInside)
+        view.addSubview(addAddressBtn)
+        setBtnConstraints(addAddressBtn, coord: ["t":50,"r":-10,"h":40,"w":170])
         
         routeBtn = makeButton("route")
         routeBtn.addTarget(self, action: #selector(routeBtnTapped), for: .touchUpInside)
+        routeBtn.isHidden = true
         view.addSubview(routeBtn)
         setBtnConstraints(routeBtn, coord: ["b":-40,"r":-10,"h":40,"w":120])
 
         resetBtn = makeButton("reset")
         resetBtn.addTarget(self, action: #selector(resetBtnTapped), for: .touchUpInside)
+        resetBtn.isHidden = true
         view.addSubview(resetBtn)
         setBtnConstraints(resetBtn, coord: ["b":-40,"l":10,"h":40,"w":120])
     }
@@ -105,6 +107,9 @@ extension ViewController {
     
     @objc func addAdressBtnTapped(){
         print( #function )
+        alertAddAddress("Add point", placeholder: "Enter address") { pointText in
+            print(pointText)
+        }
     }
 
     @objc func routeBtnTapped(){

@@ -17,20 +17,28 @@ class ViewController: UIViewController {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         return mapView
     }()
+
+    
+    var addAdressBtn: UIButton = UIButton()
+    var routeBtn: UIButton = UIButton()
+    var resetBtn: UIButton = UIButton()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .gray
-        setConstraints()
+        setMapViewConstraints()
+        
+        setButtons()
     }
 
 
 }
 
 extension ViewController {
-    
-    func setConstraints(){
+
+    func setMapViewConstraints(){
         // place our mapView
         view.addSubview(mapView)
         // set constraints to full-screen
@@ -42,5 +50,72 @@ extension ViewController {
         ])
         
     }
+
+    /**/
+    
+    func setButtons(){
+        addAdressBtn = makeButton("add adress")
+        addAdressBtn.addTarget(self, action: #selector(addAdressBtnTapped), for: .touchUpInside)
+        view.addSubview(addAdressBtn)
+        setBtnConstraints(addAdressBtn, coord: ["t":50,"r":-10,"h":40,"w":170])
+        
+        routeBtn = makeButton("route")
+        routeBtn.addTarget(self, action: #selector(routeBtnTapped), for: .touchUpInside)
+        view.addSubview(routeBtn)
+        setBtnConstraints(routeBtn, coord: ["b":-40,"r":-10,"h":40,"w":120])
+
+        resetBtn = makeButton("reset")
+        resetBtn.addTarget(self, action: #selector(resetBtnTapped), for: .touchUpInside)
+        view.addSubview(resetBtn)
+        setBtnConstraints(resetBtn, coord: ["b":-40,"l":10,"h":40,"w":120])
+    }
+    
+    func setBtnConstraints(_ btn:UIButton,coord:[String:Float]){
+        var constr = Array<NSLayoutConstraint>()
+        if let _top = coord["t"] {
+            constr.append( btn.topAnchor.constraint(equalTo: view.topAnchor, constant: CGFloat(_top)) )
+        }
+        if let _bottom = coord["b"] {
+            constr.append( btn.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: CGFloat(_bottom)) )
+        }
+        if let _right = coord["r"] {
+            constr.append( btn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: CGFloat(_right)) )
+        }
+        if let _left = coord["l"] {
+            constr.append( btn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: CGFloat(_left)) )
+        }
+        if let _witdh = coord["w"], let _height = coord["h"] {
+            constr.append( btn.heightAnchor.constraint(equalToConstant: CGFloat(_height)) )
+            constr.append( btn.widthAnchor.constraint(equalToConstant: CGFloat(_witdh)) )
+            // and change a little style :)
+            btn.layer.cornerRadius = CGFloat(_height / 3)
+        } else {
+            return
+        }
+        NSLayoutConstraint.activate( constr )
+    }
+
+    func makeButton(_ title: String) -> UIButton {
+        let btn = UIButton()
+        btn.setTitle(title, for: .normal)
+        btn.backgroundColor = .gray
+        btn.translatesAutoresizingMaskIntoConstraints = false
+        return btn
+    }
+    
+    @objc func addAdressBtnTapped(){
+        print( #function )
+    }
+
+    @objc func routeBtnTapped(){
+        print( #function )
+    }
+
+    @objc func resetBtnTapped(){
+        print( #function )
+    }
+
+    
+    /**/
     
 }

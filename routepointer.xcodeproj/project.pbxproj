@@ -40,6 +40,7 @@
 		947624D827AEAA7200A28B90 = {
 			isa = PBXGroup;
 			children = (
+				947624F827AEB06800A28B90 /* README.md */,
 				947624E327AEAA7200A28B90 /* routepointer */,
 				947624E227AEAA7200A28B90 /* Products */,
 			);
@@ -62,7 +63,6 @@
 				947624ED27AEAA7300A28B90 /* Assets.xcassets */,
 				947624EF27AEAA7300A28B90 /* LaunchScreen.storyboard */,
 				947624F227AEAA7300A28B90 /* Info.plist */,
-				947624F827AEB06800A28B90 /* README.md */,
 			);
 			path = routepointer;
 			sourceTree = "<group>";

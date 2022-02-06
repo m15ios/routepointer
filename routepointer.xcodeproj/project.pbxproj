@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		946A63E227AFC06900620EFC /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946A63E127AFC06900620EFC /* Map.swift */; };
 		947624E527AEAA7200A28B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947624E427AEAA7200A28B90 /* AppDelegate.swift */; };
 		947624E727AEAA7200A28B90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947624E627AEAA7200A28B90 /* SceneDelegate.swift */; };
 		947624E927AEAA7200A28B90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 947624E827AEAA7200A28B90 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		946A63E127AFC06900620EFC /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		947624E127AEAA7200A28B90 /* routepointer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = routepointer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		947624E427AEAA7200A28B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		947624E627AEAA7200A28B90 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				947624ED27AEAA7300A28B90 /* Assets.xcassets */,
 				947624EF27AEAA7300A28B90 /* LaunchScreen.storyboard */,
 				947624F227AEAA7300A28B90 /* Info.plist */,
+				946A63E127AFC06900620EFC /* Map.swift */,
 			);
 			path = routepointer;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				946A63E227AFC06900620EFC /* Map.swift in Sources */,
 				947624E927AEAA7200A28B90 /* ViewController.swift in Sources */,
 				947624E527AEAA7200A28B90 /* AppDelegate.swift in Sources */,
 				947624E727AEAA7200A28B90 /* SceneDelegate.swift in Sources */,

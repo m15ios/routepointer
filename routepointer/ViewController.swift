@@ -31,6 +31,12 @@ class ViewController: UIViewController {
         setMapViewConstraints()
         
         setButtons()
+        
+        Map.selfView = self
+    }
+
+    func checkRules(){
+        
     }
 
 
@@ -108,7 +114,8 @@ extension ViewController {
     @objc func addAdressBtnTapped(){
         print( #function )
         alertAddAddress("Add point", placeholder: "Enter address") { pointText in
-            print(pointText)
+            //print(pointText)
+            Map.hole.addPlacemark( pointText )
         }
     }
 
@@ -119,7 +126,6 @@ extension ViewController {
     @objc func resetBtnTapped(){
         print( #function )
     }
-
     
     /**/
     

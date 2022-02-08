@@ -33,17 +33,13 @@ class ViewController: UIViewController {
         setButtons()
         
         Map.selfView = self
+        Map.viewDelegate = self
     }
-
-    func checkRules(){
-        
-    }
-
 
 }
 
 extension ViewController {
-
+    
     func setMapViewConstraints(){
         // place our mapView
         view.addSubview(mapView)
@@ -130,3 +126,17 @@ extension ViewController {
     /**/
     
 }
+
+
+protocol ViewControllerDelegate {
+    func pointsChanged()
+}
+
+extension ViewController: ViewControllerDelegate {
+    
+    func pointsChanged() {
+        
+    }
+    
+}
+

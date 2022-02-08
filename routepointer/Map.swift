@@ -17,11 +17,10 @@ class Map {
     init(){}
     
     static var selfView: UIViewController?
-    
-    // array of annotations
-    static var points = Array<MKPointAnnotation>()
-
     static var viewDelegate: ViewControllerDelegate?
+
+    // array of annotations
+    var points = Array<MKPointAnnotation>()
     
     func alert(_ title: String, message: String ){
         if Map.selfView != nil {
@@ -38,6 +37,10 @@ class Map {
         } else {
             print("pointsChanged")
         }
+    }
+    
+    func getPoints() -> [MKPointAnnotation]{
+        return points
     }
     
     func addPlacemark(_ addressPlace: String ){
@@ -58,7 +61,7 @@ class Map {
                         annotation.title = "\(addressPlace)"
                         annotation.coordinate = placeLocation.coordinate
                         self.alert("Point: \(addressPlace)", message: placeLocation.description )
-                        Map.points.append(annotation)
+                        self.points.append(annotation)
                         self.pointsChanged()
                     }
                 }

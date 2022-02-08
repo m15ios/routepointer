@@ -50,7 +50,6 @@ extension ViewController {
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
-        
     }
 
     /**/
@@ -135,7 +134,7 @@ protocol ViewControllerDelegate {
 extension ViewController: ViewControllerDelegate {
     
     func pointsChanged() {
-        
+        print( "pointsChanged viewController" )
     }
     
 }

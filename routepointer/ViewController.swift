@@ -120,6 +120,15 @@ extension ViewController {
 
     @objc func resetBtnTapped(){
         print( #function )
+        Map.hole.clearPoints()
+    }
+    
+    
+    func showPointsOnMap(){
+        let points = Map.hole.getPoints()
+        //if points.count > 1 {
+        mapView.showAnnotations(points, animated: true)
+        //}
     }
     
     /**/
@@ -135,6 +144,15 @@ extension ViewController: ViewControllerDelegate {
     
     func pointsChanged() {
         print( "pointsChanged viewController" )
+        let points = Map.hole.getPoints()
+        if points.count > 1 {
+            resetBtn.isHidden = false
+            routeBtn.isHidden = false
+            showPointsOnMap()
+        } else {
+            resetBtn.isHidden = true
+            routeBtn.isHidden = true
+        }
     }
     
 }

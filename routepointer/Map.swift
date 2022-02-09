@@ -43,6 +43,11 @@ class Map {
         return points
     }
     
+    func clearPoints() {
+        points = Array<MKPointAnnotation>()
+        pointsChanged()
+    }
+    
     func addPlacemark(_ addressPlace: String ){
         //addressPlace: String = "Москва Полярная ул. 2"
         let geoCoder = CLGeocoder()
@@ -60,7 +65,7 @@ class Map {
                         let annotation = MKPointAnnotation()
                         annotation.title = "\(addressPlace)"
                         annotation.coordinate = placeLocation.coordinate
-                        self.alert("Point: \(addressPlace)", message: placeLocation.description )
+                        //self.alert("Point: \(addressPlace)", message: placeLocation.description )
                         self.points.append(annotation)
                         self.pointsChanged()
                     }

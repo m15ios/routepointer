@@ -32,8 +32,12 @@ class ViewController: UIViewController {
         
         setButtons()
         
+        // need for Map
         Map.selfView = self
         Map.viewDelegate = self
+        
+        // draw polyline route
+        mapView.delegate = self
     }
 
 }
@@ -124,16 +128,74 @@ extension ViewController {
     }
     
     
-    func showPointsOnMap(){
+    private func showPointsOnMap(){
         let points = Map.hole.getPoints()
         //if points.count > 1 {
         mapView.showAnnotations(points, animated: true)
         //}
     }
     
+    private func route(){
+        let points = Map.hole.getPoints()
+        if points.count < 2 {
+            alertError("route error", message: "not enough points")
+            return
+        }
+//        route2points(points[0].coordinate, points[1].coordinate)
+        route2points(points[0], points[1])
+    }
+    
+//    private func route2points(_ startPointCoord:CLLocationCoordinate2D,_ finishPointCoord:CLLocationCoordinate2D ){
+      private func route2points(_ startPointCoord:MKPlacemark,_ finishPointCoord:MKPlacemark ){
+
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: startPointCoord)
+        request.destination = MKMapItem(placemark: finishPointCoord)
+        request.transportType = .walking
+        request.requestsAlternateRoutes = true
+        
+        let directions = MKDirections(request: request)
+        directions.calculate { [self](res, err) in
+            
+            if let error = err {
+                self.alertError("route calculate error", message: "see error in console")
+                print(error)
+                return
+            }
+            
+            guard let responce = res else {
+                self.alertError("route calculate error", message: "responce is wrong")
+                return
+            }
+            
+            var resRoute = responce.routes[0]
+            for route in responce.routes {
+                resRoute = (route.distance < resRoute.distance) ? route : resRoute
+            }
+            
+            self.mapView.addOverlay(resRoute.polyline)
+            
+        }
+        
+    }
+    
     /**/
     
 }
+
+// for draw polyline overlay
+extension ViewController: MKMapViewDelegate {
+
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolygonRenderer(overlay: overlay as! MKPolyline)
+        renderer.strokeColor = .red
+        return renderer
+    }
+    
+}
+
+
+
 
 
 protocol ViewControllerDelegate {

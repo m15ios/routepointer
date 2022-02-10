@@ -38,6 +38,10 @@ class ViewController: UIViewController {
         
         // draw polyline route
         mapView.delegate = self
+        
+        Map.hole.addPlacemark( "Москва Полярная 2" )
+        Map.hole.addPlacemark( "Москва Лескова 5" )
+        
     }
 
 }
@@ -141,16 +145,19 @@ extension ViewController {
             alertError("route error", message: "not enough points")
             return
         }
-//        route2points(points[0].coordinate, points[1].coordinate)
-        route2points(points[0], points[1])
+        route2points(points[0].coordinate, points[1].coordinate)
     }
     
-//    private func route2points(_ startPointCoord:CLLocationCoordinate2D,_ finishPointCoord:CLLocationCoordinate2D ){
-      private func route2points(_ startPointCoord:MKPlacemark,_ finishPointCoord:MKPlacemark ){
+    private func route2points(_ startPointCoord:CLLocationCoordinate2D,_ finishPointCoord:CLLocationCoordinate2D ){
+        
+        let startPlacemark = MKPlacemark(coordinate: startPointCoord )
+        let startMapItem = MKMapItem(placemark: startPlacemark)
+        let finishPlacemark = MKPlacemark(coordinate: finishPointCoord )
+        let finishMapItem = MKMapItem(placemark: finishPlacemark)
 
         let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: startPointCoord)
-        request.destination = MKMapItem(placemark: finishPointCoord)
+        request.source = startMapItem
+        request.destination = finishMapItem
         request.transportType = .walking
         request.requestsAlternateRoutes = true
         
@@ -176,7 +183,6 @@ extension ViewController {
             self.mapView.addOverlay(resRoute.polyline)
             
         }
-        
     }
     
     /**/

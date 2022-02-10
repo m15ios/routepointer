@@ -39,9 +39,10 @@ class ViewController: UIViewController {
         // draw polyline route
         mapView.delegate = self
         
-        Map.hole.addPlacemark( "Москва Полярная 2" )
-        Map.hole.addPlacemark( "Москва Лескова 5" )
-        
+        //Map.hole.addPlacemark( "Москва Полярная 2" )
+        //Map.hole.addPlacemark( "Москва Лескова 5" )
+        //Map.hole.addPlacemark( "Москва Менжинского 7" )
+
     }
 
 }
@@ -124,6 +125,7 @@ extension ViewController {
 
     @objc func routeBtnTapped(){
         print( #function )
+        route()
     }
 
     @objc func resetBtnTapped(){
@@ -145,7 +147,9 @@ extension ViewController {
             alertError("route error", message: "not enough points")
             return
         }
-        route2points(points[0].coordinate, points[1].coordinate)
+        for index in 0...points.count-2 {
+            route2points(points[index].coordinate, points[index+1].coordinate)
+        }
     }
     
     private func route2points(_ startPointCoord:CLLocationCoordinate2D,_ finishPointCoord:CLLocationCoordinate2D ){
@@ -193,7 +197,7 @@ extension ViewController {
 extension ViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let renderer = MKPolygonRenderer(overlay: overlay as! MKPolyline)
+        let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
         renderer.strokeColor = .red
         return renderer
     }

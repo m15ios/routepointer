@@ -130,6 +130,8 @@ extension ViewController {
 
     @objc func resetBtnTapped(){
         print( #function )
+        mapView.removeOverlays(mapView.overlays)
+        mapView.removeAnnotations(mapView.annotations)
         Map.hole.clearPoints()
     }
     

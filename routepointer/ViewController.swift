@@ -61,8 +61,6 @@ extension ViewController {
         ])
     }
 
-    /**/
-    
     func setButtons(){
         addAddressBtn = makeButton("add adress")
         addAddressBtn.addTarget(self, action: #selector(addAdressBtnTapped), for: .touchUpInside)
@@ -138,9 +136,7 @@ extension ViewController {
     
     private func showPointsOnMap(){
         let points = Map.hole.getPoints()
-        //if points.count > 1 {
         mapView.showAnnotations(points, animated: true)
-        //}
     }
     
     private func route(){
@@ -190,8 +186,6 @@ extension ViewController {
             
         }
     }
-    
-    /**/
     
 }
 
